@@ -9,6 +9,6 @@ namespace Education
 {
     public class Student : Person
     {
-
+        // TODO Student attributes
     }
 }
