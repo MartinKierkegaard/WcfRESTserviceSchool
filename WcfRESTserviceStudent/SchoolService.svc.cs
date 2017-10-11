@@ -24,6 +24,10 @@ namespace WcfRESTserviceStudent
             return SchoolData.SchoolClasses;
         }
 
+        public List<Teacher> GetAllTeachers()
+        {
+            return SchoolData.Teachers;
+        }
 
 
         public string GetData(int value)

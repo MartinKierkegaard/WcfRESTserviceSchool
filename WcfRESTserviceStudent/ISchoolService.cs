@@ -19,6 +19,10 @@ namespace WcfRESTserviceStudent
             UriTemplate = "classes/")]
         List<SchoolClass> GetSchoolClassData();
 
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "teachers/")]
+        List<Teacher> GetAllTeachers();
+
         [OperationContract]
         string GetData(int value);
 
