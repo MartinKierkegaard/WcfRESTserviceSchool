@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -29,6 +30,12 @@ namespace WcfRESTserviceStudent
             return SchoolData.Teachers;
         }
 
+        public Teacher GetTeachersById(string id)
+        {
+            int idInt = int.Parse(id);
+            return SchoolData.Teachers.Find(teacher => teacher.Id == idInt);
+        }
+
 
         public string GetData(int value)
         {
@@ -48,6 +55,6 @@ namespace WcfRESTserviceStudent
             return composite;
         }
 
-    
+
     }
 }
