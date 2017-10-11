@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
 using Education;
 
 namespace WcfRESTserviceStudent
@@ -16,9 +13,10 @@ namespace WcfRESTserviceStudent
         /// <summary>
         /// An example for a method returning data about the school classes
         /// </summary>
-        /// <param name="value">schoolclassid</param>
         /// <returns>a list of all school classes</returns>
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "classes/")]
         List<SchoolClass> GetSchoolClassData();
 
         [OperationContract]
@@ -26,8 +24,6 @@ namespace WcfRESTserviceStudent
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
     }
 
 

@@ -31,7 +31,7 @@ namespace Education
                 new Student() { MobileNo = 3349, Name = "Tove", SchoolClassId = "1b" },
             };
         public static List<Teacher> Teachers { get; } = new List<Teacher>()
-        {
+        { // TODO: teachers usually have more than a single class
             new Teacher() { Name = "Martin", MobileNo = 123, SchoolClassId = "3a" },
             new Teacher() { Name = "Vibeke", MobileNo = 127, SchoolClassId = "3a" },
             new Teacher() { Name = "Anders", MobileNo = 122, SchoolClassId = "3a" },
