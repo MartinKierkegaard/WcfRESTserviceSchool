@@ -27,7 +27,12 @@ namespace WcfRESTserviceStudent
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}")]
-        Teacher GetTeachersById(string id);
+        IEnumerable<Teacher> GetTeachersById(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "teachers/{id}/classes")]
+        IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id);
 
         [OperationContract]
         string GetData(int value);

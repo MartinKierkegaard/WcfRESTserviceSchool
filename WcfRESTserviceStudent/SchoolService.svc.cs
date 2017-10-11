@@ -30,10 +30,21 @@ namespace WcfRESTserviceStudent
             return SchoolData.Teachers;
         }
 
-        public Teacher GetTeachersById(string id)
+        public IEnumerable<Teacher> GetTeachersById(string id)
         {
             int idInt = int.Parse(id);
-            return SchoolData.Teachers.Find(teacher => teacher.Id == idInt);
+            return SchoolData.Teachers.FindAll(teacher => teacher.Id == idInt);
+        }
+
+        public IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id)
+        {
+            int idInt = Int32.Parse(id);
+            var result = from cl in SchoolData.SchoolClasses
+                join te in SchoolData.Teachers on cl.SchoolClassId equals te.SchoolClassId
+                where te.Id == idInt
+                select cl;
+                //select new {cl.SchoolClassId, cl.Address, cl.SchoolClassName};
+            return result;
         }
 
 
