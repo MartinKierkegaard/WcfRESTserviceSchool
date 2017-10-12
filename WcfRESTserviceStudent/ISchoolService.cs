@@ -21,17 +21,19 @@ namespace WcfRESTserviceStudent
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "teachers/")]
+            UriTemplate = "teachers")]
         List<Teacher> GetAllTeachers();
 
-        // TODO getAllTeachersName
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "teachers/name")]
+        IEnumerable<string> GetAllTeachersName();
+
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}")]
         IEnumerable<Teacher> GetTeachersById(string id);
-
-        // TODO get by name(fragment)
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
