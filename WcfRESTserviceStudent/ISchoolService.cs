@@ -6,7 +6,6 @@ using Education;
 
 namespace WcfRESTserviceStudent
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface ISchoolService
     {
@@ -21,8 +20,15 @@ namespace WcfRESTserviceStudent
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "teachers?sort={sort}")]
-        List<Teacher> GetAllTeachers(string sort);
+            UriTemplate = "teachers?name={namefragment}&sort={sort}")]
+        // https://stackoverflow.com/questions/21623432/how-to-pass-multiple-parameter-in-wcf-restful-service
+        List<Teacher> GetAllTeachers(string nameFragment, string sort);
+
+        // Not legal: endpoints are consideres equal when they only differ by ?name=val
+        //[OperationContract]
+        //[WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+        //    UriTemplate = "teachers?name={nameFragment}")]
+        //IEnumerable<Teacher> GetTeachersByName(string nameFragment);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
@@ -34,7 +40,11 @@ namespace WcfRESTserviceStudent
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}")]
         IEnumerable<Teacher> GetTeachersById(string id);
-
+        /// <summary>
+        /// Alternative to teachers?name={namefragment}&amp;sort={sort}
+        /// </summary>
+        /// <param name="nameFragment"></param>
+        /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/name/{namefragment}")]
@@ -44,12 +54,6 @@ namespace WcfRESTserviceStudent
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}/classes")]
         IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id);
-
-        [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
     }
 
 

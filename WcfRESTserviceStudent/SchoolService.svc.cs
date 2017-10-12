@@ -18,9 +18,11 @@ namespace WcfRESTserviceStudent
             return SchoolData.SchoolClasses;
         }
 
-        public List<Teacher> GetAllTeachers(string sort)
+        public List<Teacher> GetAllTeachers(string nameFragment, string sort)
         {
             List<Teacher> data = SchoolData.Teachers;
+            if (nameFragment != null)
+                data = data.FindAll(teacher => teacher.Name.Contains(nameFragment));
             if (sort == null) return data;
             sort = sort.ToLower();
             switch (sort)
@@ -63,29 +65,7 @@ namespace WcfRESTserviceStudent
                          join te in SchoolData.Teachers on cl.SchoolClassId equals te.SchoolClassId
                          where te.Id == idInt
                          select cl;
-            //select new {cl.SchoolClassId, cl.Address, cl.SchoolClassName};
             return result;
         }
-
-
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
-
     }
 }
