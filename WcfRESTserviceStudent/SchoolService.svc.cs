@@ -18,9 +18,24 @@ namespace WcfRESTserviceStudent
             return SchoolData.SchoolClasses;
         }
 
-        public List<Teacher> GetAllTeachers()
+        public List<Teacher> GetAllTeachers(string sort)
         {
-            return SchoolData.Teachers;
+            List<Teacher> data = SchoolData.Teachers;
+            if (sort == null) return data;
+            sort = sort.ToLower();
+            switch (sort)
+            {
+                case "name":
+                    data.Sort((teacher, teacher1) => teacher.Name.CompareTo(teacher1.Name));
+                    return data;
+                case "id":
+                    data.Sort((teacher, teacher1) => teacher.Id - teacher1.Id);
+                    return data;
+                case "mobileno":
+                    data.Sort((teacher, teacher1) => teacher.MobileNo - teacher1.MobileNo);
+                    return data;
+                default: return data;
+            }
         }
 
         // TODO GetAllTeachersName, sort + remove duplicates?

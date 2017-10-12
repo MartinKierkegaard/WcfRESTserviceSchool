@@ -16,13 +16,13 @@ namespace WcfRESTserviceStudent
         /// <returns>a list of all school classes</returns>
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "classes/")]
+            UriTemplate = "classes")]
         List<SchoolClass> GetSchoolClassData();
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "teachers")]
-        List<Teacher> GetAllTeachers();
+            UriTemplate = "teachers?sort={sort}")]
+        List<Teacher> GetAllTeachers(string sort);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
