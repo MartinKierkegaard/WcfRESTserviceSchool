@@ -36,6 +36,12 @@ namespace WcfRESTserviceStudent
             return SchoolData.Teachers.FindAll(teacher => teacher.Id == idInt);
         }
 
+        // TODO GetTeachersByName case sensitive or not?
+        public IEnumerable<Teacher> GetTeachersByName(string nameFragment)
+        {
+            return SchoolData.Teachers.FindAll(teacher => teacher.Name.Contains(nameFragment));
+        }
+
         public IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id)
         {
             int idInt = Int32.Parse(id);
