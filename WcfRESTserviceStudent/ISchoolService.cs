@@ -55,6 +55,11 @@ namespace WcfRESTserviceStudent
         IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "students/{id}/teachers")]
+        IEnumerable<Teacher> GetTeachersByStudentId(string id);
+
+        [OperationContract]
         [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}")]
         Teacher DeleteTeacher(string id);

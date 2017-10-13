@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Education;
 
@@ -50,20 +49,33 @@ namespace WcfRESTserviceStudent
             return SchoolData.Teachers.FindAll(teacher => teacher.Id == idInt);
         }
 
-        // TODO GetTeachersByName case sensitive or not?
         public IEnumerable<Teacher> GetTeachersByName(string nameFragment)
         {
-            return SchoolData.Teachers.FindAll(teacher => teacher.Name.Contains(nameFragment));
+            nameFragment = nameFragment.ToLower();
+            return SchoolData.Teachers.FindAll(teacher => teacher.Name.ToLower().Contains(nameFragment));
         }
 
         public IEnumerable<SchoolClass> GetSchoolClassesByTeacherId(string id)
         {
-            int idInt = Int32.Parse(id);
+            int idInt = int.Parse(id);
             var result = from cl in SchoolData.SchoolClasses
                          join tc in SchoolData.TeacherClasses on cl.SchoolClassId equals tc.SchoolClassId
-                         where tc.TeacherId== idInt
+                         where tc.TeacherId == idInt
                          select cl;
             return result;
+        }
+
+        public IEnumerable<Teacher> GetTeachersByStudentId(string id)
+        {
+            int idInt = int.Parse(id);
+            var result = from st in SchoolData.Students
+                         //join cl in SchoolData.SchoolClasses on st.SchoolClassId equals cl.SchoolClassId
+                         join stte in SchoolData.TeacherClasses on st.SchoolClassId equals stte.SchoolClassId
+                         join te in SchoolData.Teachers on stte.TeacherId equals te.Id
+                         where st.Id == idInt
+                         select te;
+            return result;
+
         }
 
         public Teacher DeleteTeacher(string id)
