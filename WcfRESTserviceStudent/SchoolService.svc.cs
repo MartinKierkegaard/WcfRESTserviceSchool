@@ -69,7 +69,7 @@ namespace WcfRESTserviceStudent
         {
             int idInt = int.Parse(id);
             var result = from st in SchoolData.Students
-                         //join cl in SchoolData.SchoolClasses on st.SchoolClassId equals cl.SchoolClassId
+                             //join cl in SchoolData.SchoolClasses on st.SchoolClassId equals cl.SchoolClassId
                          join stte in SchoolData.TeacherClasses on st.SchoolClassId equals stte.SchoolClassId
                          join te in SchoolData.Teachers on stte.TeacherId equals te.Id
                          where st.Id == idInt
@@ -85,6 +85,24 @@ namespace WcfRESTserviceStudent
             if (teacher == null) return null;
             SchoolData.Teachers.Remove(teacher);
             return teacher;
+        }
+
+        public Teacher AddTeacher(Teacher teacher)
+        {
+            // ID??
+            SchoolData.Teachers.Add(teacher);
+            return teacher;
+        }
+
+        public Teacher UpdateTeacher(string id, Teacher teacher)
+        {
+            int idInt = int.Parse(id);
+            Teacher existingTeacher = SchoolData.Teachers.FirstOrDefault(te => te.Id == idInt);
+            if (existingTeacher == null) return null;
+            existingTeacher.Name = teacher.Name;
+            existingTeacher.MobileNo = teacher.MobileNo;
+            existingTeacher.Salary = teacher.Salary;
+            return existingTeacher;
         }
     }
 }

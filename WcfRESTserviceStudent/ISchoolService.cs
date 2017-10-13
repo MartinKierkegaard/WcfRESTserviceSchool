@@ -37,8 +37,10 @@ namespace WcfRESTserviceStudent
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "teachers/{id}")]
         IEnumerable<Teacher> GetTeachersById(string id);
+
         /// <summary>
         /// Alternative to teachers?name={namefragment}&amp;sort={sort}
         /// </summary>
@@ -60,10 +62,23 @@ namespace WcfRESTserviceStudent
         IEnumerable<Teacher> GetTeachersByStudentId(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json,
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, 
             UriTemplate = "teachers/{id}")]
         Teacher DeleteTeacher(string id);
 
-        // TODO POST, PUT
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "teachers/")]
+        Teacher AddTeacher(Teacher teacher);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "teachers/{id}")]
+        Teacher UpdateTeacher(string id, Teacher teacher);
     }
 }
