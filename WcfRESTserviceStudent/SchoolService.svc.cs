@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using Education;
 
 namespace WcfRESTserviceStudent
@@ -76,6 +77,17 @@ namespace WcfRESTserviceStudent
                          select te;
             return result;
 
+        }
+
+        public IEnumerable<Student> GetStudentsByTeacherId(string id)
+        {
+            int idInt = int.Parse(id);
+            var result = from stte in SchoolData.TeacherClasses
+                join cl in SchoolData.SchoolClasses on stte.SchoolClassId equals cl.SchoolClassId
+                join st in SchoolData.Students on cl.SchoolClassId equals st.SchoolClassId
+                         where stte.TeacherId == idInt
+                         select st;
+            return result;
         }
 
         public Teacher DeleteTeacher(string id)
