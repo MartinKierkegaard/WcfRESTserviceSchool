@@ -1,8 +1,8 @@
 ﻿namespace Education
 {
-    // TODO [DataContract] + [DataMember]
-    public class Student : Person
+    public class TeacherClass
     {
+        public int TeacherId { get; set; }
         public string SchoolClassId { get; set; }
     }
 }

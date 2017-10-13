@@ -39,7 +39,6 @@ namespace WcfRESTserviceStudent
             }
         }
 
-        // TODO GetAllTeachersName, sort + remove duplicates?
         public IEnumerable<string> GetAllTeachersName()
         {
             return SchoolData.Teachers.Select(teacher => teacher.Name);
@@ -61,8 +60,8 @@ namespace WcfRESTserviceStudent
         {
             int idInt = Int32.Parse(id);
             var result = from cl in SchoolData.SchoolClasses
-                         join te in SchoolData.Teachers on cl.SchoolClassId equals te.SchoolClassId
-                         where te.Id == idInt
+                         join tc in SchoolData.TeacherClasses on cl.SchoolClassId equals tc.SchoolClassId
+                         where tc.TeacherId== idInt
                          select cl;
             return result;
         }

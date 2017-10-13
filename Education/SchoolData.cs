@@ -4,7 +4,7 @@ namespace Education
 {
     public static class SchoolData
     {
-        public static List<Student> Students { get; } = 
+        public static List<Student> Students { get; } =
             new List<Student>
             {
                 new Student {Id=1, MobileNo = 1234, Name = "Mads", SchoolClassId = "3a" },
@@ -28,22 +28,35 @@ namespace Education
             };
         public static List<Teacher> Teachers { get; } = new List<Teacher>
         {
-            new Teacher {Id=1, Name = "Martin", MobileNo = 123, SchoolClassId = "3a" },
-            new Teacher {Id=2, Name = "Vibeke", MobileNo = 127, SchoolClassId = "3a" },
-            new Teacher {Id=3, Name = "Anders", MobileNo = 122, SchoolClassId = "3a" },
-            new Teacher {Id=4, Name = "Martin", MobileNo = 123, SchoolClassId = "2a" },
-            new Teacher {Id=5, Name = "Vibeke", MobileNo = 127, SchoolClassId = "1b" },
-            new Teacher {Id=6, Name = "Anders", MobileNo = 122, SchoolClassId = "1b" },
-            new Teacher {Id=7, Name = "Anders", MobileNo = 122, SchoolClassId = "2a" },
-            new Teacher {Id=8, Name = "Eik", MobileNo = 160, SchoolClassId = "2a" },
+            new Teacher {Id=1, Name = "Martin", MobileNo = 123 },
+            new Teacher {Id=2, Name = "Vibeke", MobileNo = 127 },
+            new Teacher {Id=3, Name = "Anders", MobileNo = 122 },
+            new Teacher {Id=4, Name = "Michael H", MobileNo = 992 },
+            new Teacher {Id=5, Name = "Mohammed", MobileNo = 982 },
+            new Teacher {Id=9, Name = "Peter", MobileNo = 129 },
+            new Teacher {Id=10, Name = "Michael C", MobileNo = 132 },
+            new Teacher {Id=100, Name = "Eik", MobileNo = 160 }
         };
-        // HACK: maybe we need another "table" for the many-to-many relationship
 
-        public static List<SchoolClass> SchoolClasses { get; set; } = new List<SchoolClass>
+        public static List<SchoolClass> SchoolClasses { get; } = new List<SchoolClass>
         {
             new SchoolClass { SchoolClassId = "3a", SchoolClassName = "Ro31Easj", Address = "Jernbanegade" },
+            new SchoolClass { SchoolClassId = "3b", SchoolClassName = "ro16da2b3-3b", Address = "Jernbanegade" },
+            new SchoolClass { SchoolClassId = "3o", SchoolClassName = "ro16cs2o3-3o", Address = "Jernbanegade" },
             new SchoolClass { SchoolClassId = "2a", SchoolClassName = "Ro21Easj", Address = "Elisagårdsvej" },
             new SchoolClass { SchoolClassId = "1b", SchoolClassName = "Ro1Easj", Address = "Maglegårdsvej" },
+        };
+
+        public static List<TeacherClass> TeacherClasses { get; } = new List<TeacherClass>
+        {
+            new TeacherClass {TeacherId = 1, SchoolClassId = "3a"},
+            new TeacherClass { TeacherId = 2, SchoolClassId = "3a"},
+            new TeacherClass { TeacherId = 9, SchoolClassId = "3a"},
+            new TeacherClass { TeacherId = 3, SchoolClassId = "3b"},
+            new TeacherClass { TeacherId = 3, SchoolClassId = "3o"},
+            new TeacherClass { TeacherId = 10, SchoolClassId = "3o"},
+            new TeacherClass { TeacherId = 5, SchoolClassId = "3o"},
+            new TeacherClass { TeacherId = 4, SchoolClassId = "3b"},
         };
     }
 }
