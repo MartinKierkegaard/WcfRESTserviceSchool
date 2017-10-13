@@ -44,10 +44,10 @@ namespace WcfRESTserviceStudent
             return SchoolData.Teachers.Select(teacher => teacher.Name);
         }
 
-        public IEnumerable<Teacher> GetTeachersById(string id)
+        public Teacher GetTeacherById(string id)
         {
             int idInt = int.Parse(id);
-            return SchoolData.Teachers.FindAll(teacher => teacher.Id == idInt);
+            return SchoolData.Teachers.FirstOrDefault(teacher => teacher.Id == idInt);
         }
 
         public IEnumerable<Teacher> GetTeachersByName(string nameFragment)
@@ -83,8 +83,8 @@ namespace WcfRESTserviceStudent
         {
             int idInt = int.Parse(id);
             var result = from stte in SchoolData.TeacherClasses
-                join cl in SchoolData.SchoolClasses on stte.SchoolClassId equals cl.SchoolClassId
-                join st in SchoolData.Students on cl.SchoolClassId equals st.SchoolClassId
+                         join cl in SchoolData.SchoolClasses on stte.SchoolClassId equals cl.SchoolClassId
+                         join st in SchoolData.Students on cl.SchoolClassId equals st.SchoolClassId
                          where stte.TeacherId == idInt
                          select st;
             return result;
@@ -111,9 +111,9 @@ namespace WcfRESTserviceStudent
             int idInt = int.Parse(id);
             Teacher existingTeacher = SchoolData.Teachers.FirstOrDefault(te => te.Id == idInt);
             if (existingTeacher == null) return null;
-            existingTeacher.Name = teacher.Name;
-            existingTeacher.MobileNo = teacher.MobileNo;
-            existingTeacher.Salary = teacher.Salary;
+            if (teacher.Name != null) existingTeacher.Name = teacher.Name;
+            if (teacher.MobileNo != 0) existingTeacher.MobileNo = teacher.MobileNo;
+            if (teacher.Salary != null) existingTeacher.Salary = teacher.Salary;
             return existingTeacher;
         }
     }

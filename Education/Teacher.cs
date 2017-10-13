@@ -6,6 +6,6 @@ namespace Education
     public class Teacher : Person
     {
         [DataMember]
-        public int Salary { get; set; }
+        public int? Salary { get; set; }
     }
 }

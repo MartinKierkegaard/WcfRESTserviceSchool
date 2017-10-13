@@ -39,7 +39,7 @@ namespace WcfRESTserviceStudent
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "teachers/{id}")]
-        IEnumerable<Teacher> GetTeachersById(string id);
+        Teacher GetTeacherById(string id);
 
         /// <summary>
         /// Alternative to teachers?name={namefragment}&amp;sort={sort}
