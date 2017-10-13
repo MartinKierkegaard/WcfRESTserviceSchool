@@ -8,6 +8,6 @@ namespace Education
 {
     public class Teacher : Person
     {
-        // TODO: Teacher should have attributes?
+        // TODO: Teacher should have attributes? Salary?
     }
 }

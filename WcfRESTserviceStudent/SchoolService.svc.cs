@@ -11,7 +11,6 @@ namespace WcfRESTserviceStudent
         /// An example for a method returning data about the school classes
         /// GET method
         /// </summary>
-        /// <param name="value">schoolclassid</param>
         /// <returns>a list of all school classes</returns>
         public List<SchoolClass> GetSchoolClassData()
         {
@@ -66,6 +65,15 @@ namespace WcfRESTserviceStudent
                          where te.Id == idInt
                          select cl;
             return result;
+        }
+
+        public Teacher DeleteTeacher(string id)
+        {
+            int idint = int.Parse(id);
+            Teacher teacher = SchoolData.Teachers.Find(te => te.Id == idint);
+            if (teacher == null) return null;
+            SchoolData.Teachers.Remove(teacher);
+            return teacher;
         }
     }
 }

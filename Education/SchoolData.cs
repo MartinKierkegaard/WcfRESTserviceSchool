@@ -39,7 +39,6 @@ namespace Education
         };
         // HACK: maybe we need another "table" for the many-to-many relationship
 
-
         public static List<SchoolClass> SchoolClasses { get; set; } = new List<SchoolClass>
         {
             new SchoolClass { SchoolClassId = "3a", SchoolClassName = "Ro31Easj", Address = "Jernbanegade" },
