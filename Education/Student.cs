@@ -1,8 +1,11 @@
-﻿namespace Education
+﻿using System.Runtime.Serialization;
+
+namespace Education
 {
-    // TODO [DataContract] + [DataMember]
+    [DataContract]
     public class Student : Person
     {
+        [DataMember]
         public string SchoolClassId { get; set; }
     }
 }
