@@ -21,7 +21,7 @@ namespace WcfRESTserviceStudent
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers?name={namefragment}&sort={sort}")]
         // https://stackoverflow.com/questions/21623432/how-to-pass-multiple-parameter-in-wcf-restful-service
-        List<Teacher> GetAllTeachers(string nameFragment, string sort);
+        List<Teacher> GetAllTeachers(string nameFragment = null, string sort = null);
 
         // Not legal: endpoints are consideres equal when they only differ by ?name=val
         //[OperationContract]
@@ -67,7 +67,7 @@ namespace WcfRESTserviceStudent
         IEnumerable<Student> GetStudentsByTeacherId(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, 
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "teachers/{id}")]
         Teacher DeleteTeacher(string id);
 

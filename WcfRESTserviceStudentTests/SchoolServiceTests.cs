@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Education;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,64 +14,82 @@ namespace WcfRESTserviceStudent.Tests
 
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetAllTeachersTest()
         {
             ISchoolService service = new SchoolService();
-            List<Teacher> teachers = service.GetAllTeachers(null, null);
+            List<Teacher> teachers = service.GetAllTeachers();
             Assert.IsTrue(teachers.Count > 0);
+
+            teachers = service.GetAllTeachers("a");
+            Assert.AreEqual(4, teachers.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetAllTeachersNameTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            IEnumerable<string> teacherNames = service.GetAllTeachersName();
+            Assert.IsTrue(teacherNames.Contains("Anders"));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetTeachersByIdTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            Teacher teacher= service.GetTeacherById("1");
+            Assert.AreEqual("Martin", teacher.Name);
+            teacher = service.GetTeacherById("0");
+            Assert.IsNull(teacher);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetTeachersByNameTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            IEnumerable<Teacher> teachers = service.GetTeachersByName("Martin");
+            Assert.AreEqual(1, teachers.Count());
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetSchoolClassesByTeacherIdTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            IEnumerable<SchoolClass> classes = service.GetSchoolClassesByTeacherId("1");
+            Assert.AreEqual(1, classes.Count());
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetTeachersByStudentIdTest()
         {
             // TODO test
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetStudentsByTeacherIdTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            IEnumerable<Student> students = service.GetStudentsByTeacherId("1");
+            Assert.AreEqual(6, students.Count());
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DeleteTeacherTest()
         {
-            // TODO test
+            ISchoolService service = new SchoolService();
+            int count = service.GetAllTeachers().Count;
+            service.DeleteTeacher("9");
+            Assert.AreEqual(count-1, service.GetAllTeachers().Count);
         }
 
         [TestMethod]
         public void AddTeacherTest()
         {
             ISchoolService service = new SchoolService();
-            List<Teacher> teachers = service.GetAllTeachers(null, null);
+            List<Teacher> teachers = service.GetAllTeachers();
             int count = teachers.Count;
             service.AddTeacher(new Teacher { Id = 123, Name = "Zimba" });
-            teachers = service.GetAllTeachers(null, null);
+            teachers = service.GetAllTeachers();
             int newCount = teachers.Count;
             Assert.AreEqual(count + 1, newCount);
         }

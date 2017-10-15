@@ -17,7 +17,7 @@ namespace WcfRESTserviceStudent
             return SchoolData.SchoolClasses;
         }
 
-        public List<Teacher> GetAllTeachers(string nameFragment, string sort)
+        public List<Teacher> GetAllTeachers(string nameFragment = null, string sort = null)
         {
             List<Teacher> data = SchoolData.Teachers;
             if (nameFragment != null)
