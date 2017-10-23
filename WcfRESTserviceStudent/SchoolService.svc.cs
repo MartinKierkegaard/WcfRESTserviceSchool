@@ -13,7 +13,7 @@ namespace WcfRESTserviceStudent
         /// </summary>
         /// <returns>a list of all school classes</returns>
         public List<SchoolClass> GetSchoolClassData()
-        {
+        {     
             return SchoolData.SchoolClasses;
         }
 
