@@ -27,9 +27,9 @@ namespace Education
                 new Student {Id=18, MobileNo = 3349, Name = "Tove", SchoolClassId = "1b" },
                 new Student {Id=19, MobileNo = 3349, Name = "Adam", SchoolClassId = "3b" },
                 new Student {Id=20, MobileNo = 3349, Name = "Benjamin", SchoolClassId = "3b" },
-                new Student {Id=18, MobileNo = 3350, Name = "Carl", SchoolClassId = "3b" },
-                new Student {Id=18, MobileNo = 3349, Name = "Dennis", SchoolClassId = "3o" },
-                new Student {Id=18, MobileNo = 3349, Name = "Earl", SchoolClassId = "3o" },
+                new Student {Id=21, MobileNo = 3350, Name = "Carl", SchoolClassId = "3b" },
+                new Student {Id=22, MobileNo = 3349, Name = "Dennis", SchoolClassId = "3o" },
+                new Student {Id=23, MobileNo = 3349, Name = "Earl", SchoolClassId = "3o" },
             };
         public static List<Teacher> Teachers { get; } = new List<Teacher>
         {
