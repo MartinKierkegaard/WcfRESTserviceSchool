@@ -75,7 +75,7 @@ namespace WcfRESTserviceStudent
         [WebInvoke(Method = "POST",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "teachers/")]
+            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "teachers")]
         Teacher AddTeacher(Teacher teacher);
 
         [OperationContract]
